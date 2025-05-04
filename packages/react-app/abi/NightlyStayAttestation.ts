@@ -50,7 +50,12 @@ export const NightlyStayAttestationABI = [
         name: 'guest',
         type: 'address',
       },
-      { indexed: true, internalType: 'uint256', name: 'id', type: 'uint256' },
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'id',
+        type: 'uint256',
+      },
       {
         indexed: false,
         internalType: 'bytes32',
@@ -63,6 +68,12 @@ export const NightlyStayAttestationABI = [
         name: 'timestamp',
         type: 'uint256',
       },
+      {
+        indexed: false,
+        internalType: 'string',
+        name: 'cid',
+        type: 'string',
+      },
     ],
     name: 'StayRecorded',
     type: 'event',
@@ -70,20 +81,86 @@ export const NightlyStayAttestationABI = [
   {
     inputs: [],
     name: 'DECIMALS',
-    outputs: [{ internalType: 'uint8', name: '', type: 'uint8' }],
+    outputs: [
+      {
+        internalType: 'uint8',
+        name: '',
+        type: 'uint8',
+      },
+    ],
     stateMutability: 'view',
     type: 'function',
   },
   {
-    inputs: [{ internalType: 'address', name: 'guest', type: 'address' }],
+    inputs: [
+      {
+        internalType: 'bytes32',
+        name: '',
+        type: 'bytes32',
+      },
+    ],
+    name: 'cidByHash',
+    outputs: [
+      {
+        internalType: 'string',
+        name: '',
+        type: 'string',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'bytes32',
+        name: 'metadataHash',
+        type: 'bytes32',
+      },
+    ],
+    name: 'getCid',
+    outputs: [
+      {
+        internalType: 'string',
+        name: '',
+        type: 'string',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: 'guest',
+        type: 'address',
+      },
+    ],
     name: 'getLatestStay',
     outputs: [
       {
         components: [
-          { internalType: 'uint256', name: 'id', type: 'uint256' },
-          { internalType: 'address', name: 'guest', type: 'address' },
-          { internalType: 'bytes32', name: 'metadataHash', type: 'bytes32' },
-          { internalType: 'uint256', name: 'timestamp', type: 'uint256' },
+          {
+            internalType: 'uint256',
+            name: 'id',
+            type: 'uint256',
+          },
+          {
+            internalType: 'address',
+            name: 'guest',
+            type: 'address',
+          },
+          {
+            internalType: 'bytes32',
+            name: 'metadataHash',
+            type: 'bytes32',
+          },
+          {
+            internalType: 'uint256',
+            name: 'timestamp',
+            type: 'uint256',
+          },
           {
             internalType: 'enum NightlyStayAttestation.Status',
             name: 'status',
@@ -100,17 +177,41 @@ export const NightlyStayAttestationABI = [
   },
   {
     inputs: [
-      { internalType: 'address', name: 'guest', type: 'address' },
-      { internalType: 'uint256', name: 'index', type: 'uint256' },
+      {
+        internalType: 'address',
+        name: 'guest',
+        type: 'address',
+      },
+      {
+        internalType: 'uint256',
+        name: 'index',
+        type: 'uint256',
+      },
     ],
     name: 'getStay',
     outputs: [
       {
         components: [
-          { internalType: 'uint256', name: 'id', type: 'uint256' },
-          { internalType: 'address', name: 'guest', type: 'address' },
-          { internalType: 'bytes32', name: 'metadataHash', type: 'bytes32' },
-          { internalType: 'uint256', name: 'timestamp', type: 'uint256' },
+          {
+            internalType: 'uint256',
+            name: 'id',
+            type: 'uint256',
+          },
+          {
+            internalType: 'address',
+            name: 'guest',
+            type: 'address',
+          },
+          {
+            internalType: 'bytes32',
+            name: 'metadataHash',
+            type: 'bytes32',
+          },
+          {
+            internalType: 'uint256',
+            name: 'timestamp',
+            type: 'uint256',
+          },
           {
             internalType: 'enum NightlyStayAttestation.Status',
             name: 'status',
@@ -126,29 +227,62 @@ export const NightlyStayAttestationABI = [
     type: 'function',
   },
   {
-    inputs: [{ internalType: 'address', name: 'guest', type: 'address' }],
+    inputs: [
+      {
+        internalType: 'address',
+        name: 'guest',
+        type: 'address',
+      },
+    ],
     name: 'getStayCount',
-    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
     stateMutability: 'view',
     type: 'function',
   },
   {
     inputs: [],
     name: 'nextId',
-    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
     stateMutability: 'view',
     type: 'function',
   },
   {
     inputs: [],
     name: 'owner',
-    outputs: [{ internalType: 'address', name: '', type: 'address' }],
+    outputs: [
+      {
+        internalType: 'address',
+        name: '',
+        type: 'address',
+      },
+    ],
     stateMutability: 'view',
     type: 'function',
   },
   {
     inputs: [
-      { internalType: 'bytes32', name: 'metadataHash', type: 'bytes32' },
+      {
+        internalType: 'bytes32',
+        name: 'metadataHash',
+        type: 'bytes32',
+      },
+      {
+        internalType: 'string',
+        name: 'cid',
+        type: 'string',
+      },
     ],
     name: 'recordStay',
     outputs: [],
@@ -157,15 +291,39 @@ export const NightlyStayAttestationABI = [
   },
   {
     inputs: [
-      { internalType: 'address', name: '', type: 'address' },
-      { internalType: 'uint256', name: '', type: 'uint256' },
+      {
+        internalType: 'address',
+        name: '',
+        type: 'address',
+      },
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
     ],
     name: 'stays',
     outputs: [
-      { internalType: 'uint256', name: 'id', type: 'uint256' },
-      { internalType: 'address', name: 'guest', type: 'address' },
-      { internalType: 'bytes32', name: 'metadataHash', type: 'bytes32' },
-      { internalType: 'uint256', name: 'timestamp', type: 'uint256' },
+      {
+        internalType: 'uint256',
+        name: 'id',
+        type: 'uint256',
+      },
+      {
+        internalType: 'address',
+        name: 'guest',
+        type: 'address',
+      },
+      {
+        internalType: 'bytes32',
+        name: 'metadataHash',
+        type: 'bytes32',
+      },
+      {
+        internalType: 'uint256',
+        name: 'timestamp',
+        type: 'uint256',
+      },
       {
         internalType: 'enum NightlyStayAttestation.Status',
         name: 'status',
