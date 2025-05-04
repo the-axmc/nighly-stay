@@ -1,62 +1,103 @@
-# React Framework + NextJS | Celo Composer
+### NightlyStay · Smart Contract + dApp on Celo Alfajores
 
-Celo Composer support React boilerplate template with TailwindCSS. This is a starter kit with no additional boilerplate code. It's a perfect starter kit to get your project started on Celo blockchain.
+A minimal, on-chain attestation and reputation system for tracking nights stayed — built for hospitality, digital guestbooks, or creative phygital experiences.
 
-## Setup & Installation
+Created using Celo Composer and deployed on Celo Alfajores Testnet.
 
+---
 
-### Set environment variables
+## What This Project Does
 
-Create a copy of `.env.example` and rename it to `.env`.
+This dApp allows users to:
 
-#### Add Wallet Connect ID
+    - Connect a Celo compatible wallet
 
-Create a WalletConnect Cloud Project ID from [WalletConnect Cloud](https://cloud.walletconnect.com/)
+    - Record a "stay" with metadata (e.g., duration, location, experience)
 
-Provide the WalletConnect Cloud Project ID in your `.env` file to use WalletConnect in your project. As shown in the `.env.example` file.
+    - View total number of stays recorded for their wallet
 
-```typescript
-NEXT_PUBLIC_WC_PROJECT_ID=YOUR_EXAMPLE_PROJECT_ID;
-```
+    - Retrieve details of their latest stay (ID, metadata hash, timestamp, status)
 
+Behind the scenes:
 
-### Install dependencies
+    🧾 The user submits a description of their stay.
 
-Install all the required dependencies to run the dApp.
+    🧠 The dApp hashes the metadata to bytes32 and stores it on-chain.
 
-Using **yarn**
+    💸 Users must approve a small cUSD payment before recording a stay.
 
-```bash
-yarn
-```
+    🔐 All data is written via smart contracts, ensuring transparency and traceability.
 
-or using **npm**
+## What the Smart Contract Does
 
-```bash
-npm i
-```
+The smart contract deployed to Alfajores handles:
 
-> React + Tailwind CSS Template does not have any dependency on hardhat.
-> This starterkit does not include connection of Hardhat/Truffle with ReactJS. It's up to the user to integrate smart contract with ReactJS. This gives user more flexibility over the dApp.
+    Storing a Stay struct with:
 
-- To start the dApp, run the following command.
+        - id
 
-```bash
-yarn dev
-```
+        - guest address
 
-## Dependencies
+        - metadataHash (keccak256 of input text)
 
-### Default
+        - timestamp
 
-- [Next.js](https://nextjs.org/) app framework
-- [TailwindCSS](https://tailwindcss.com/) for UI
+        - status (enum)
 
-## Architecture
+    Auto-incrementing stay IDs
 
-- `/pages` includes the main application components (specifically `layout.tsx` and `page.tsx`)
-  - `layout.tsx` includes configuration
-  - `page.tsx` is the main page of the application
-- `/components` includes components that are rendered in `page.tsx`
-- `/public` includes static files
+    Tracking stays per user (getStayCount)
 
+    Returning the latest stay (getLatestStay)
+
+    Restricting sensitive actions to the contract owner (onlyOwner)
+
+A public Attestation event is emitted on every new stay.
+🛠 Built With
+
+    🦄 Celo Composer
+
+    🧱 Hardhat for smart contract development
+
+    🔗 wagmi + viem for frontend Web3 hooks
+
+    🎨 Tailwind CSS for styling
+
+    💸 cUSD token on Alfajores
+
+    🔁 Celo Alfajores Testnet (faucet here)
+
+🧑‍💻 How to Run It
+
+# Clone and install
+
+git clone https://github.com/your-username/nightlystay
+cd nightlystay/packages/react-app
+npm install
+
+# Start frontend
+
+npm run dev
+
+🧪 Deploy Smart Contracts
+
+From the root project folder:
+
+cd packages/hardhat
+npx hardhat deploy --network alfajores
+
+Update the deployed contract address in:
+
+packages/react-app/constants/contract.ts
+
+🌍 Powered By CELO Europe
+
+This project was created as part of the Celo Europe initiative —
+supporting builders creating phygital, real-world, and decentralized experiences across the continent.
+
+    Want to expand this with loyalty rewards, IPFS metadata, SBT badges, or real-world integrations?
+    Get in touch at celo.org or follow the @CeloEurope community on X.
+
+📜 License
+
+MIT — use, fork, and build upon it freely!
